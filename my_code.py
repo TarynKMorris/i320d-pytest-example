@@ -1,9 +1,14 @@
 import pytest
+import re
 
 def fix_phone_num(phone_num_to_fix):
+  phone_num_to_fix = re.sub('[()-]','', phone_num_to_fix)
+  phone_num_to_fix = phone_num_to_fix.replace(" ","")
   # can only handle numbers that are exactly 10 digits long
   if (len(phone_num_to_fix) != 10):
     raise ValueError("Can only format numbers that are exactly 10 digits long")
+  if (not phone_num_to_fix.isdigit()):
+    raise ValueError("Cannot accept non-digits")
   
   # given "5125558823". Split the parts, then recombine and return
   area_code = phone_num_to_fix[0:3] # 512 (first three digits)
