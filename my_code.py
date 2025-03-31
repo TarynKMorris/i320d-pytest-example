@@ -19,8 +19,13 @@ def test_fix_phone_num():
   assert fix_phone_num("5554429876") == '(555) 442 9876'
   assert fix_phone_num("3216543333") == '(321) 654 3333'
 
+def test_phone_num_length():
   with pytest.raises(ValueError):
     fix_phone_num("51")
+
+def test_all_digit():
+  with pytest.raises(ValueError):
+    fix_phone_num("555442abcd")
 
 def test_additional_phone_num_formats():
   with pytest.raises(ValueError):
